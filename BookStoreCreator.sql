@@ -47,6 +47,9 @@ CREATE TABLE IF NOT EXISTS publisher (
 ALTER TABLE books
 ADD book_qty int;
 
+ALTER TABLE books
+MODIFY COLUMN book_descr varchar(1500);
+
 
 
 
