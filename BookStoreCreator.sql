@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS publisher (
   publisherid int not null auto_increment primary key,
   publisher_name varchar(60) NOT NULL
 );
+ALTER TABLE books
+ADD book_qty int;
 
 
 
