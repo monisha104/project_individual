@@ -91,9 +91,11 @@ session_start();
           </table>
           <form method="post" action="checkout.php">
             <input type="hidden" name="bookisbn" value="<?php echo $book_isbn;?>">
-            <label for="name" class="control-label col-md-4">Enter Quantity</label>
+            <label for="name" class="control-label col-md-4">Enter Quantity of Book</label>
             <input type="text" name="qty" class="col-md-4" class="form-control">
-            <input type="submit" value="Purchase / Add to cart" name="cart" class="btn btn-primary">
+            <div>
+            &nbsp;&nbsp;&nbsp;<input type="submit" value="Purchase" name="cart" class="btn btn-primary">
+            </div>
           </form>
        	</div>
       </div>
