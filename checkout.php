@@ -31,6 +31,7 @@
     <?php
 session_start();
   $book_isbn = $_POST['bookisbn'];
+  $_SESSION['isbn'] = $book_isbn;
   // connecto database
   require("mysqli_connect.php");
   $title = "Checking out";
@@ -53,23 +54,44 @@ session_start();
 			?>
 		<tr>
 			<td><?php echo $book['book_title'] . " by " . $book['book_author']; ?></td>
-			<td><?php echo "$" . $book['book_price']; ?></td>
-		<td><?php echo $qty=$_POST["qty"]; ?></td>
+			<td><?php echo "$" . $book['book_price']; $_SESSION['book_price'] = $book['book_price'];?></td>
+		<td><?php echo $qty=$_POST["qty"]; $_SESSION['qty']= $_POST["qty"];?></td>
 			<td><?php  echo "$" . $qty * $book['book_price']; ?></td> -->
 		</tr>
 		<tr>
 			<th>&nbsp;</th>
 			<th>&nbsp;</th>
 		</tr>
+		<tr>
+			<td>Shipping</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>20.00</td>
+		</tr>
+		<tr>
+			<th>Total Including Shipping</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+			<th><?php echo "$" . ($qty * $book['book_price']) + 20;  $_SESSION['total_price'] = ($qty * $book['book_price']) + 20;?></th>
+		</tr>
 	</table>
   <form method="post" action="order.php" class="form-horizontal">
 		<?php if(isset($_SESSION['err']) && $_SESSION['err'] == 1){ ?>
 			<p class="text-danger">All fields have to be filled</p>
 			<?php } ?>
+			<div class="form-group">
+			<label for="customer" class="control-label col-md-4">CUSTOMER DETAILS :</label>
+		</div>
 		<div class="form-group">
-			<label for="name" class="control-label col-md-4">Name</label>
+			<label for="fname" class="control-label col-md-4">First Name</label>
 			<div class="col-md-4">
-				<input type="text" name="name" class="col-md-4" class="form-control">
+				<input type="text" name="fname" class="col-md-4" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lname" class="control-label col-md-4">Last Name</label>
+			<div class="col-md-4">
+				<input type="text" name="lname" class="col-md-4" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
@@ -85,7 +107,7 @@ session_start();
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="zip_code" class="control-label col-md-4">Zip Code</label>
+			<label for="zip_code" class="control-label col-md-4">Postal Code</label>
 			<div class="col-md-4">
 				<input type="text" name="zip_code" class="col-md-4" class="form-control">
 			</div>
@@ -96,9 +118,47 @@ session_start();
 				<input type="text" name="country" class="col-md-4" class="form-control">
 			</div>
 		</div>
+		<div></div>
+		<div class="form-group">
+			<label for="payment" class="control-label col-md-4">PAYMENT DETAILS :</label>
+		</div>
+		<div class="form-group">
+            <label for="card_type" class="col-lg-2 control-label">Type</label>
+            <div class="col-lg-10">
+              	<select class="form-control" name="card_type">
+                  	<option value="VISA">VISA</option>
+                  	<option value="MasterCard">MasterCard</option>
+                  	<option value="American Express">American Express</option>
+              	</select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_number" class="col-lg-2 control-label">Number</label>
+            <div class="col-lg-10">
+              	<input type="text" class="form-control" name="card_number">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_PID" class="col-lg-2 control-label">PID</label>
+            <div class="col-lg-10">
+              	<input type="text" class="form-control" name="card_PID">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_expire" class="col-lg-2 control-label">Expiry Date</label>
+            <div class="col-lg-10">
+              	<input type="date" name="card_expire" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_owner" class="col-lg-2 control-label">Name</label>
+            <div class="col-lg-10">
+              	<input type="text" class="form-control" name="card_owner">
+            </div>
+        </div>
 		<div >
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name="submit" value="Purchase" class="btn btn-primary">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="submit" name="submit" value="Place Order" class="btn btn-primary">
 		</div>
 	</form>
 

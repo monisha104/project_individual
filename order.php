@@ -28,3 +28,51 @@
         </div>
       </div>
     </nav>
+    <?php
+    session_start();
+    $count = 0;
+    // connecto database
+    require("mysqli_connect.php");
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $zip_code = $_POST['zip_code'];
+    $country = $_POST['country'];
+    $query = "INSERT INTO customers VALUES 
+			('null', '" . $fname . "', '" . $lname . "' , '" . $address . "', '" . $city . "', '" . $zip_code . "', '" . $country . "')";
+
+		$result = mysqli_query($dbc, $query);
+		if(!$result){
+			echo "insert false !" . mysqli_error($dbc);
+			exit;
+		}
+        $customerid = mysqli_insert_id($dbc);
+        $total_price = $_SESSION['total_price'];
+        $date = date("Y-m-d H:i:s");
+        $query1 = "INSERT INTO orders VALUES 
+		('null', '" . $customerid . "', '" . $total_price . "', '" . $date . "', '" . $fname . "', '" . $address . "', '" . $city . "', '" . $zip_code . "', '" . $country . "')";
+		$result1 = mysqli_query($dbc, $query1);
+		if(!$result1){
+			echo "Insert orders failed " . mysqli_error($dbc);
+			exit;
+		}
+
+        $isbn = $_SESSION['isbn'];
+        $bookprice = $_SESSION['book_price'] ;
+        $qty = $_SESSION['qty'];
+        $query2 = "INSERT INTO order_items VALUES 
+		('null', '$isbn', '$bookprice', '$qty')";
+		$result2 = mysqli_query($dbc, $query2);
+		if(!$result2){
+			echo "Insert value false!" . mysqli_error($dbc);
+			exit;
+		}
+
+        $query3 = "select book_qty from books where book_isbn = '".$isbn."' ";
+        $result3 = mysqli_query($dbc, $query3);
+        $quantity= $result3 - $qty;
+        $query4 = "update books set book_qty = '".$quantity."' where book_isbn = '".$isbn."'";
+
+        echo "Thank you for your order";
+    ?>
