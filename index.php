@@ -14,15 +14,15 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
       <div class="container">
         <div class="navbar-header">
-                   <a class="navbar-brand" href="index.php">Bookstore</a>
+                   <a  style="color: black" class="navbar-brand" href="index.php">Bookstore</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="books.php">&nbsp; Books</a></li>
-              <li><a href="#">&nbsp; Contact</a></li>
+              <li><a style="color: black" href="books.php">&nbsp; Books</a></li>
+              <li><a style="color: black" href="contact.php">&nbsp; Contact</a></li>
             </ul>
         </div>
       </div>

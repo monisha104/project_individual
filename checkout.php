@@ -14,15 +14,15 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
       <div class="container">
         <div class="navbar-header">
-                   <a class="navbar-brand" href="index.php">Bookstore</a>
+                   <a style="color: black" class="navbar-brand" href="index.php">Bookstore</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="books.php">&nbsp; Books</a></li>
-              <li><a href="#">&nbsp; Contact</a></li>
+              <li><a style="color: black" href="books.php">&nbsp; Books</a></li>
+              <li><a style="color: black" href="contact.php">&nbsp; Contact</a></li>
             </ul>
         </div>
       </div>
@@ -55,7 +55,7 @@ session_start();
 			<td><?php echo $book['book_title'] . " by " . $book['book_author']; ?></td>
 			<td><?php echo "$" . $book['book_price']; $_SESSION['book_price'] = $book['book_price'];?></td>
 		<td><?php echo $qty=$_POST["qty"]; $_SESSION['qty']= $_POST["qty"];?></td>
-			<td><?php  echo "$" . $qty * $book['book_price']; ?></td> -->
+			<td><?php  echo "$" . $qty * $book['book_price']; ?></td> 
 		</tr>
 		<tr>
 			<th>&nbsp;</th>
@@ -138,7 +138,7 @@ session_start();
             </div>
         </div>
         <div class="form-group">
-            <label for="card_PID" class="col-lg-2 control-label">PID</label>
+            <label for="card_PID" class="col-lg-2 control-label">CVV</label>
             <div class="col-lg-10">
               	<input type="text" class="form-control" name="card_PID">
             </div>
