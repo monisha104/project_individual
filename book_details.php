@@ -48,6 +48,7 @@ session_start();
   }
 
   $title = $row['book_title'];
+  $qnty = $row['book_qty'];
   
 ?>
       <!-- Example row of columns -->
@@ -89,6 +90,9 @@ session_start();
               if(isset($conn)) {mysqli_close($conn); }
             ?>
           </table>
+          <?php if($qnty==0){ ?>
+			<p class="text-danger">Out of Stock...!!!</p>
+			<?php } ?>
           <form method="post" action="checkout.php">
             <input type="hidden" name="bookisbn" value="<?php echo $book_isbn;?>">
             <label for="name" class="control-label col-md-4">Enter Quantity of Book</label>

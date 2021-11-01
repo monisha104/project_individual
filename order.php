@@ -71,8 +71,11 @@
 
         $query3 = "select book_qty from books where book_isbn = '".$isbn."' ";
         $result3 = mysqli_query($dbc, $query3);
-        $quantity= $result3 - $qty;
+        $row = mysqli_fetch_array($result3);
+        
+        $quantity = $row['book_qty'] - $qty;
         $query4 = "update books set book_qty = '".$quantity."' where book_isbn = '".$isbn."'";
-
+        $result4 = mysqli_query($dbc, $query4);
+        
         echo "Thank you for your order";
     ?>
