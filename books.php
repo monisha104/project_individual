@@ -23,7 +23,6 @@
           <ul class="nav navbar-nav navbar-right">
               <li><a href="books.php">&nbsp; Books</a></li>
               <li><a href="#">&nbsp; Contact</a></li>
-              <li><a href="#">&nbsp; Cart</a></li>
             </ul>
         </div>
       </div>
@@ -62,6 +61,5 @@
       </div>
 <?php
       }
-  if(isset($conn)) { mysqli_close($conn); }
-  require_once "./template/footer.php";
+  
 ?>

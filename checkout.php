@@ -23,7 +23,6 @@
           <ul class="nav navbar-nav navbar-right">
               <li><a href="books.php">&nbsp; Books</a></li>
               <li><a href="#">&nbsp; Contact</a></li>
-              <li><a href="#">&nbsp; Cart</a></li>
             </ul>
         </div>
       </div>

@@ -23,7 +23,6 @@
           <ul class="nav navbar-nav navbar-right">
               <li><a href="books.php">&nbsp; Books</a></li>
               <li><a href="#">&nbsp; Contact</a></li>
-              <li><a href="#">&nbsp; Cart</a></li>
             </ul>
         </div>
       </div>
@@ -76,6 +75,6 @@
         $quantity = $row['book_qty'] - $qty;
         $query4 = "update books set book_qty = '".$quantity."' where book_isbn = '".$isbn."'";
         $result4 = mysqli_query($dbc, $query4);
-        
+
         echo "Thank you for your order";
     ?>
